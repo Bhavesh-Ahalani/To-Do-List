@@ -1,6 +1,8 @@
 //jshint esversion:6
 
-const express = require("express");
+const express = require('express');
+const path = require('path');
+const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const date = require(__dirname + "/date.js");
@@ -145,7 +147,9 @@ app.get("/about", function (req, res) {
   res.render("about");
 });
 
-
-app.listen(3000, function () {
-  console.log("Server started on port 3000");
-});
+app
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
