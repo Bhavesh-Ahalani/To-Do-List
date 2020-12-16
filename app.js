@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect("mmongodb+srv://admin-bhavesh:Test123@cluster0.trgum.mongodb.net/todolistDB", { useNewUrlParser: true });
+mongoose.connect("mmongodb+srv://<admin-user-details>:<password>@cluster0.trgum.mongodb.net/<dbDetails>", { useNewUrlParser: true });
 
 const day = date.getDate();
 const itemsSchema = {
